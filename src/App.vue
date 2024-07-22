@@ -1,7 +1,5 @@
 <script setup>
-  import { ref } from 'vue'
-
-  const mostrarResultado = ref(false)
+  import { ref } from 'vue';
 
   const nome = ref('');
   const email = ref('');
@@ -13,20 +11,68 @@
   const hobbie = ref('');
   const linguagemProgramacao = ref('');
   const biografia = ref('');
-  /* const confirmacao = ref(false);
 
-  function enviarFormulario() {
-    if (validarFormulario()) {
-      confirmacao.value = true;
-    } 
+  const estados = ref([
+  { sigla: 'AC', nome: 'Acre' },
+  { sigla: 'AL', nome: 'Alagoas' },
+  { sigla: 'AP', nome: 'Amapá' },
+  { sigla: 'AM', nome: 'Amazonas' },
+  { sigla: 'BA', nome: 'Bahia' },
+  { sigla: 'CE', nome: 'Ceará' },
+  { sigla: 'DF', nome: 'Distrito Federal' },
+  { sigla: 'ES', nome: 'Espírito Santo' },
+  { sigla: 'GO', nome: 'Goiás' },
+  { sigla: 'MA', nome: 'Maranhão' },
+  { sigla: 'MT', nome: 'Mato Grosso' },
+  { sigla: 'MS', nome: 'Mato Grosso do Sul' },
+  { sigla: 'MG', nome: 'Minas Gerais' },
+  { sigla: 'PA', nome: 'Pará' },
+  { sigla: 'PB', nome: 'Paraíba' },
+  { sigla: 'PR', nome: 'Paraná' },
+  { sigla: 'PE', nome: 'Pernambuco' },
+  { sigla: 'PI', nome: 'Piauí' },
+  { sigla: 'RJ', nome: 'Rio de Janeiro' },
+  { sigla: 'RN', nome: 'Rio Grande do Norte' },
+  { sigla: 'RS', nome: 'Rio Grande do Sul' },
+  { sigla: 'RO', nome: 'Rondônia' },
+  { sigla: 'RR', nome: 'Roraima' },
+  { sigla: 'SC', nome: 'Santa Catarina' },
+  { sigla: 'SP', nome: 'São Paulo' },
+  { sigla: 'SE', nome: 'Sergipe' },
+  { sigla: 'TO', nome: 'Tocantins' }
+]);
+
+  const validacao = ref(false);
+  const contador = ref(0)
+
+  function mostrarResultado() {
+    if (nome.value == '' || email.value == '' || senha.value == '' || confirmarSenha.value == '' || 
+    endereco.value == '' || cidade.value == '' || estado.value == '' || hobbie.value == '' || 
+    linguagemProgramacao.value == '' || biografia.value == '') {
+      alert('Preencha todos os campos');
+    }
+    else {
+      
+      if (nome.value.length < 5) alert('Preencha seu nome corretamente');
+      else contado.value++;
+      
+      if (!email.value.includes('@')) alert('Preencha seu email corretamente');
+      else contador.value++;
+      
+      if (senha.value.length < 4) alert('Senha fraca');
+      else contador.value++
+
+      if (confirmarSenha.value != senha.value) alert('Campo "Confirmar senha" preenchido incorretamente');
+      else contador.value++;
+
+      if (contador.value == 4) validacao.value = true;
+      else {
+        validacao.value = false;
+        contador.value = 0;
+      }
+
+    }
   }
-
-  function validarFormulario() {
-    if (nome.value.length < 3) return false;
-    if (!email.value.includes('@')) return false;
-    if (senha.value != confirmarSenha.value) return false;
-    
-  } */
 
 </script>
 
@@ -34,7 +80,6 @@
   <div class="titulo">
     <h1>Formulário de Cadastro de Produtos</h1>
   </div>
-  
 
   <div class="container d-flex flex-row gap-3">
     <div class="formulario">
@@ -52,79 +97,59 @@
 
       <div class="form-group">
         <label for="">Senha:</label>
-        <input class="form-control" type="password" v-model="senha"/>
+        <input class="form-control" type="password" v-model="senha" />
       </div>
 
       <div class="form-group">
         <label for="">Confirmação de senha:</label>
-        <input class="form-control" type="password" v-model="confirmarSenha"/>
+        <input class="form-control" type="password" v-model="confirmarSenha" />
       </div>
 
       <div class="form-group">
         <label for="">Endereço:</label>
-        <input class="form-control" type="text" v-model="endereco"/>
+        <input class="form-control" type="text" v-model="endereco" />
       </div>
 
       <div class="form-group">
         <label for="">Cidade:</label>
-        <input class="form-control" type="text" v-model="cidade"/>
+        <input class="form-control" type="text" v-model="cidade" />
       </div>
 
       <div class="form-group">
         <label for="estado">Estado:</label>
-        <select class="form-control" name="estado" id="estado" v-model.number.lazy="estado">
-          <option value="ac">Acre (AC)</option>
-          <option value="al">Alagoas (AL)</option>
-          <option value="ap">Amapá (AP)</option>
-          <option value="am">Amazônas (AM)</option>
-          <option value="ba">Bahia (BA)</option>
-          <option value="ce">Ceará (CE)</option>
-          <option value="df">Distrito Federal (DF)</option>
-          <option value="es">Espírito Santo (ES)</option>
-          <option value="go">Goiás (GO)</option>
-          <option value="ma">Maranhão (MA)</option>
-          <option value="mg">Minas Gerais (MG)</option>
-          <option value="ms">Mato Grosso do Sul (MS)</option>
-          <option value="mt">Mato Grosso (MT)</option>   
-          <option value="pa">Pará (PA)</option>
-          <option value="pb">Paraíba (PB)</option>
-          <option value="pe">Pernambuco (PE)</option>
-          <option value="pr">Paraná (PR)</option>
-          <option value="pi">Piauí (PI)</option>
-          <option value="rj">Rio de Janeiro (RJ)</option>
-          <option value="rn">Rio Grande do Norte (RN)</option>
-          <option value="ro">Rondônia (RO)</option>
-          <option value="rr">Roraima (RR)</option>
-          <option value="rs">Rio Grande do Sul (RS)</option>
-          <option value="sc">Santa Catarina (SC)</option>
-          <option value="se">Sergipe (SE)</option>
-          <option value="sp">São Paulo (SP)</option>
-          <option value="to">Tocantins (TO)</option>
+        <select class="form-control" name="estado" id="estado" v-model="estado">
+          <option v-for="estado in estados" :key="estado.sigla" :value="estado.sigla"> {{ estado.nome }} </option>
         </select>
       </div>
-    
+
       <div class="form-group">
         <label for="">Hobbie:</label>
-        <input class="form-control" type="text" v-model="hobbie"/>
+        <input class="form-control" type="text" v-model="hobbie" />
       </div>
-    
+
       <div>
         <label for="linguagemProgramacao">Linguagem de programação:</label>
-        <input class="form-control" type="text" id="linguagemProgramacao" v-model.number.lazy="linguagemProgramacao">
+        <input class="form-control" type="text" id="linguagemProgramacao" v-model="linguagemProgramacao" />
       </div>
 
       <div>
         <label for="biografia">Biografia:</label>
-        <textarea class="form-control" name="biografia" id="biografia" cols="30" rows="10" v-model.number.lazy="biografia"></textarea> 
-      </div>
-      
-      <div>
-        <button type="button" class="btn btn-primary" @click="mostrarResultado = !mostrarResultado" >Mostrar</button>
+        <textarea
+          class="form-control"
+          name="biografia"
+          id="biografia"
+          cols="30"
+          rows="10"
+          v-model="biografia"
+        ></textarea>
       </div>
 
+      <div>
+        <button type="button" class="btn btn-primary" @click="mostrarResultado()"> Mostrar </button>
+      </div>
     </div>
 
-    <div v-if="mostrarResultado" class="resultado">
+    <div v-if="validacao == true" class="resultado">
       <h2>Resultado</h2>
       <p>Nome: {{ nome }}</p>
       <p>Email: {{ email }}</p>
@@ -136,35 +161,32 @@
       <p>Linguagem de programação: {{ linguagemProgramacao }}</p>
       <p>Biografia: {{ biografia }}</p>
     </div>
-      
   </div>
-  
 </template>
 
 <style scoped>
+.titulo {
+  text-align: center;
+  padding: 3rem 0;
+}
 
-  .titulo {
-    text-align: center;
-    padding: 3rem 0;
-  }
+.formulario,
+.resultado {
+  width: 48%;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 0 0 5rem;
+}
 
-  .formulario, .resultado {
-    width: 48%;
-    border-radius: 10px;
-    padding: 20px;
-    margin: 0 0 5rem;
-  }
+.formulario {
+  background-color: rgb(179, 214, 243);
+}
 
-  .formulario {
-    background-color: rgb(179, 214, 243);
-  }
+.resultado {
+  background-color: #dac2eb;
+}
 
-  .resultado {
-    background-color: #dac2eb;
-  }
-
-  button {
-    margin: 1rem 0;
-  }
-
+button {
+  margin: 1rem 0;
+}
 </style>
