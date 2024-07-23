@@ -1,46 +1,16 @@
 <script setup>
-    import { ref } from 'vue';
-    
-    const nome = ref('');
-    const email = ref('');
-    const senha = ref('');
-    const confirmarSenha = ref('');
-    const endereco = ref('');
-    const cidade = ref('');
-    const estado = ref('');
-    const hobbie = ref('');
-    const linguagemProgramacao = ref('');
-    const biografia = ref('');
-
-    const estados = ref([
-    { sigla: 'AC', nome: 'Acre' },
-    { sigla: 'AL', nome: 'Alagoas' },
-    { sigla: 'AP', nome: 'Amapá' },
-    { sigla: 'AM', nome: 'Amazonas' },
-    { sigla: 'BA', nome: 'Bahia' },
-    { sigla: 'CE', nome: 'Ceará' },
-    { sigla: 'DF', nome: 'Distrito Federal' },
-    { sigla: 'ES', nome: 'Espírito Santo' },
-    { sigla: 'GO', nome: 'Goiás' },
-    { sigla: 'MA', nome: 'Maranhão' },
-    { sigla: 'MT', nome: 'Mato Grosso' },
-    { sigla: 'MS', nome: 'Mato Grosso do Sul' },
-    { sigla: 'MG', nome: 'Minas Gerais' },
-    { sigla: 'PA', nome: 'Pará' },
-    { sigla: 'PB', nome: 'Paraíba' },
-    { sigla: 'PR', nome: 'Paraná' },
-    { sigla: 'PE', nome: 'Pernambuco' },
-    { sigla: 'PI', nome: 'Piauí' },
-    { sigla: 'RJ', nome: 'Rio de Janeiro' },
-    { sigla: 'RN', nome: 'Rio Grande do Norte' },
-    { sigla: 'RS', nome: 'Rio Grande do Sul' },
-    { sigla: 'RO', nome: 'Rondônia' },
-    { sigla: 'RR', nome: 'Roraima' },
-    { sigla: 'SC', nome: 'Santa Catarina' },
-    { sigla: 'SP', nome: 'São Paulo' },
-    { sigla: 'SE', nome: 'Sergipe' },
-    { sigla: 'TO', nome: 'Tocantins' }
-    ]);
+  defineProps([
+    'nome',
+    'email',
+    'senha',
+    'confirmarSenha',
+    'endereco',
+    'cidade',
+    'estado',
+    'hobbie',
+    'linguagemProgramacao',
+    'biografia',
+  ]);
 
     const mostrarResultado = ref(false);
 
@@ -52,49 +22,49 @@
 
       <div class="form-group">
         <label for="">Nome:</label>
-        <input class="form-control" type="text" v-model="nome" />
+        <input class="form-control" type="text" v-bind="nome" />
       </div>
 
       <div class="form-group">
         <label for="">Email:</label>
-        <input class="form-control" type="text" v-model="email" />
+        <input class="form-control" type="text" v-bind="email" />
       </div>
 
       <div class="form-group">
         <label for="">Senha:</label>
-        <input class="form-control" type="password" v-model="senha" />
+        <input class="form-control" type="password" v-bind="senha" />
       </div>
 
       <div class="form-group">
         <label for="">Confirmação de senha:</label>
-        <input class="form-control" type="password" v-model="confirmarSenha" />
+        <input class="form-control" type="password" v-bind="confirmarSenha" />
       </div>
 
       <div class="form-group">
         <label for="">Endereço:</label>
-        <input class="form-control" type="text" v-model="endereco" />
+        <input class="form-control" type="text" v-bind="endereco" />
       </div>
 
       <div class="form-group">
         <label for="">Cidade:</label>
-        <input class="form-control" type="text" v-model="cidade" />
+        <input class="form-control" type="text" v-bind="cidade" />
       </div>
 
       <div class="form-group">
         <label for="estado">Estado:</label>
-        <select class="form-control" name="estado" id="estado" v-model="estado">
+        <select class="form-control" name="estado" id="estado" v-bind="estado">
           <option v-for="estado in estados" :key="estado.sigla" :value="estado.sigla"> {{ estado.nome }} </option>
         </select>
       </div>
 
       <div class="form-group">
         <label for="">Hobbie:</label>
-        <input class="form-control" type="text" v-model="hobbie" />
+        <input class="form-control" type="text" v-bind="hobbie" />
       </div>
 
       <div>
         <label for="linguagemProgramacao">Linguagem de programação:</label>
-        <input class="form-control" type="text" id="linguagemProgramacao" v-model="linguagemProgramacao" />
+        <input class="form-control" type="text" id="linguagemProgramacao" v-bind="linguagemProgramacao" />
       </div>
 
       <div>
@@ -105,7 +75,7 @@
           id="biografia"
           cols="30"
           rows="10"
-          v-model="biografia"
+          v-bind="biografia"
         ></textarea>
       </div>
 
@@ -113,6 +83,8 @@
         <button type="button" class="btn btn-primary" @click="mostrarResultado = !mostrarResultado"> Mostrar </button>
       </div>
     </div>
+
+    <BoxResultado />
 
 </template>
 
